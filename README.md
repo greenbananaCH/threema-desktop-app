@@ -2,7 +2,7 @@
 Infos (german): https://langhard.ch/download-threema-desktop-client-app/
 
 ## Nativefier
-v43.1.3
+v44.0.0
 
 ## App-Builds
 https://drone.greenbanana.ch/greenbananaCH/threema-desktop-app

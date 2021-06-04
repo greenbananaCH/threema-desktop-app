@@ -10,7 +10,7 @@ steps:
   - rm -rf /root/.wine
   - winecfg
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4 --app-version 4 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "ia32" --icon "threema.ico" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "ia32" --icon "threema.ico" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-win32-ia32.zip Threema-win32-ia32/
   when:
@@ -24,7 +24,7 @@ steps:
   - rm -rf /root/.wine
   - winecfg
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4 --app-version 4 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "x64" --icon "threema.ico" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "x64" --icon "threema.ico" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-win32-x64.zip Threema-win32-x64/
   when:
@@ -35,7 +35,7 @@ steps:
   commands:
   - apt-get update && apt-get --yes install zip gzip tar
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4 --app-version 4 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "mac" --icon "threema.icns" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "mac" --icon "threema.icns" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-darwin-x64.zip Threema-darwin-x64/
   when:
@@ -46,7 +46,7 @@ steps:
   commands:
   - apt-get update && apt-get --yes install zip gzip tar
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4 --app-version 4 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "linux" --arch "ia32" --icon "threema.png" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "linux" --arch "ia32" --icon "threema.png" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-linux-ia32.zip Threema-linux-ia32/
   when:
