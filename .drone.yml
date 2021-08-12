@@ -10,12 +10,12 @@ steps:
   - rm -rf /root/.wine
   - winecfg
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "ia32" --icon "threema.ico" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.4.0 --app-version 4.4.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "ia32" --icon "threema.ico" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-win32-ia32.zip Threema-win32-ia32/
   when:
     event: tag
-    
+
 - name: build win64 app
   image: electronuserland/builder:wine-mono
   commands:
@@ -24,38 +24,49 @@ steps:
   - rm -rf /root/.wine
   - winecfg
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "x64" --icon "threema.ico" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.4.0 --app-version 4.4.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "windows" --arch "x64" --icon "threema.ico" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-win32-x64.zip Threema-win32-x64/
   when:
     event: tag
-    
+
 - name: build mac app
   image: node
   commands:
   - apt-get update && apt-get --yes install zip gzip tar
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "mac" --icon "threema.icns" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.4.0 --app-version 4.4.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "mac" --icon "threema.icns" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-darwin-x64.zip Threema-darwin-x64/
   when:
     event: tag
-    
-- name: build linux app
+
+- name: build linux app 32bit
   image: node
   commands:
   - apt-get update && apt-get --yes install zip gzip tar
   - npm install -g nativefier
-  - nativefier --name "Threema" --build-version 4.1.0 --app-version 4.1.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "linux" --arch "ia32" --icon "threema.png" "web.threema.ch"
+  - nativefier --name "Threema" --build-version 4.4.0 --app-version 4.4.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "linux" --arch "ia32" --icon "threema.png" "web.threema.ch"
   - mkdir -p /drone/src/dist
   - zip -r /drone/src/dist/Threema-linux-ia32.zip Threema-linux-ia32/
   when:
     event: tag
-    
+
+- name: build linux app 64bit
+  image: node
+  commands:
+  - apt-get update && apt-get --yes install zip gzip tar
+  - npm install -g nativefier
+  - nativefier --name "Threema" --build-version 4.4.0 --app-version 4.4.0 --app-copyright "Threema GmbH (Threema Web App), GreenBanana GmbH (Desktop App)" --platform "linux" --arch "x64" --icon "threema.png" "web.threema.ch"
+  - mkdir -p /drone/src/dist
+  - zip -r /drone/src/dist/Threema-linux-x64.zip Threema-linux-x64/
+  when:
+    event: tag
+
 - name: publish apps
   image: plugins/github-release
   settings:
-    api_key: 
+    api_key:
       from_secret: GITHUB_PERSONAL_ACCESS_TOKEN
     files: /drone/src/dist/*
   when:
